@@ -3,10 +3,12 @@
 mod front_of_house;
 mod engine;
 mod basic;
+mod type_transform;
 
 use crate::engine::java_engine;
 use crate::front_of_house::hosting;
 use crate::basic::structure::entity;
+use crate::type_transform::from;
 
 pub fn eat_at_restaurant() {
     hosting::add_to_wait_list();
@@ -43,6 +45,46 @@ mod tests {
             age,
         };
 
-        println!("Person {:?}", perter)
+        println!("Person {:?}", perter);
+        assert_eq!(perter.age, 27);
+
+        let nil = entity::Nil;
+
+        //println!(nil);
+
+        let pair = entity::Pair(-1,3);
+        println!("pair contains {:?} and {:?}", pair.0, pair.1);
+        assert_eq!(pair.0 , -1);
     }
+
+    #[test]
+    fn test_square(){
+        let rectangle = entity::Point::new(3,2);
+        assert_eq!(rectangle.square(), 6);
+        //常量
+        assert_eq!(entity::THRESHOLD, 10);
+    }
+
+    #[test]
+    fn test_vec(){
+        let mut vec = Vec::new();
+        vec.push(20);
+        println!("{:?}", vec);
+    }
+
+    #[test]
+    fn test_from_trait(){
+
+        //From trait
+        let from = from::Number::from(20);
+        println!("number is {:?}", from);
+
+        //Into trait
+        let int = 5;
+        let num: from::Number = int.into();
+        println!("number is {:?}", num);
+    }
+
+
+
 }
