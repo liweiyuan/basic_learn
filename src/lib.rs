@@ -6,8 +6,8 @@ mod basic;
 mod type_transform;
 
 use crate::engine::java_engine;
-use crate::front_of_house::hosting;
 use crate::basic::structure::entity;
+use crate::front_of_house::hosting;
 use crate::type_transform::from;
 
 pub fn eat_at_restaurant() {
